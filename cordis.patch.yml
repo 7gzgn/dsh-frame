@@ -1,0 +1,4 @@
+# dsh-frame bundle patch：把自己插进 profile 的插件名单
+- insert:
+    - id: plugin-frame
+      name: 'dsh-frame'
