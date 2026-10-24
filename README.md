@@ -50,10 +50,11 @@ New-Item -ItemType Junction -Path "$env:USERPROFILE\.dsh\profiles\desktop\node_m
 
 ## 数字口径与已知局限
 
+- **默认挑哪个会话**：取「最近改动、且 `delegationDepth` 为 0 的主会话」。subagent / fork 出来的子会话会被跳过——否则刚跑完一个子 agent，"最近"就会指到它身上。要指定会话就传 `session=<路径>`。
 - **token 是估的**：字符数 ÷ 2，中英混排的粗估，不是分词器的真值。要看真值得等 provider 回 usage。
 - **单价是默认值**：0.054 元/百万 input token 是 2026-10 在 DeepSeek flash 上反推出来的量级（含缓存命中折扣），换模型/换价自己传 `pricePerMillion`。
 - **会话日志是多帧 zstd**：`zstdDecompressSync` 只解第一帧（只有 187 字节），本插件按 magic `28 B5 2F FD` 切帧逐段解压。
-- **工具表那栏在头没变化时可能是旧值**：`request/header` 只在配置或工具集变化时写一条，插件取的是最新那条。
+- **工具表那栏取的是最后一条 `request/header`**：这个事件只在配置或工具集变化时写，所以它能反映"装/卸插件之后"的真实数量；但如果本次会话从头到尾没变过工具集，那条记录会是很早的。
 
 ## 开发
 
