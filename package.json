@@ -1,0 +1,47 @@
+{
+  "name": "dsh-frame",
+  "version": "0.1.0",
+  "description": "把自己这台机器上的开销摊开看：每次模型请求吃进去多少 token、system prompt 和工具表各占多少、离上下文压缩还有多远。读会话日志，不调模型，不往 system prompt 写一个字。Frame: what a session actually costs.",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "test",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "keywords": [
+    "deepseek-harness",
+    "dsh",
+    "dsh-plugin",
+    "token",
+    "context",
+    "compaction",
+    "observability",
+    "cost",
+    "开销",
+    "上下文",
+    "压缩"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "dsh": {
+    "compatibility": {
+      "dshReleases": {
+        "0.2.1-rc.2": "compatible"
+      }
+    },
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": ">=4.0.4 <5.0.0"
+  }
+}
